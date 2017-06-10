@@ -1,6 +1,19 @@
 import React, {Component, PropTypes} from 'react'
 
-const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }) =>
+export default class Counter extends Component {
+
+  static propTypes = {
+    value: PropTypes.number.isRequired,
+    onIncrement: PropTypes.func.isRequired,
+    onDecrement: PropTypes.func.isRequired,
+    onIncrementAsync: PropTypes.func.isRequired
+  };
+
+  render() {
+
+    const {value, onIncrement, onDecrement, onIncrementAsync} = this.props;
+
+    return (
       <div>
         <button onClick={onIncrement}>
           Increment
@@ -9,6 +22,7 @@ const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }) =>
         <button onClick={onDecrement}>
           Decrement
         </button>
+        {' '}
         <button onClick={onIncrementAsync}>
           Increment after 1 second
         </button>
@@ -17,12 +31,6 @@ const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }) =>
           Clicked: {value} times
         </div>
       </div>
-
-Counter.propTypes = {
-  value: PropTypes.number.isRequired,
-  onIncrement: PropTypes.func.isRequired,
-  onDecrement: PropTypes.func.isRequired,
-  onIncrementAsync: PropTypes.func.isRequired
+    );
+  }
 }
-
-export default Counter;
