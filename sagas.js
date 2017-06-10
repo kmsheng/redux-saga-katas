@@ -1,22 +1,23 @@
 import {delay} from 'redux-saga';
-import {put, takeEvery, all, call} from 'redux-saga/effects';
+import {put, takeEvery, all, call, cancel} from 'redux-saga/effects';
 
-export function* helloSaga() {
-  console.log('Hello Saga!');
+function* auth(data) {
+  setTimeout(() => {
+    yield put({type: 'LOGIN_SUCCESS', data});
+  }, 5000);
 }
 
-export function* incrementAsync() {
-  yield call(delay, 1000);
-  yield put({type: 'INCREMENT'});
+export function* login(action) {
+  const data = yield call(auth, action.data);
+  yield put({type: 'LOGIN_SUCCESS', data: action.data});
 }
 
-export function* watchIncrementAsync() {
-  yield takeEvery('INCREMENT_ASYNC', incrementAsync);
+export function* watchLogin() {
+  yield takeEvery('LOGIN', login);
 }
 
 export default function* rootSaga() {
   yield all([
-    helloSaga(),
-    watchIncrementAsync()
+    watchLogin()
   ]);
 }
