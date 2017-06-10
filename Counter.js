@@ -25,4 +25,4 @@ Counter.propTypes = {
   onIncrementAsync: PropTypes.func.isRequired
 }
 
-export default Counter
+export default Counter;
