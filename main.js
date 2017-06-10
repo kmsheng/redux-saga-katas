@@ -19,7 +19,10 @@ sagaMiddleware.run(rootSaga);
 
 function render() {
   ReactDOM.render(
-    <LoginForm onSubmit={(data) => console.log('data', data)} />,
+    <div>
+      {JSON.stringify(store.getState())}
+      <LoginForm onSubmit={(data) => store.dispatch({type: 'LOGIN', data})} />
+    </div>,
     document.getElementById('root')
   )
 }
