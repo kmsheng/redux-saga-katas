@@ -17,8 +17,6 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-const action = type => store.dispatch({type});
-
 function render() {
   ReactDOM.render(
     <LoginForm onSubmit={(data) => console.log('data', data)} />,
