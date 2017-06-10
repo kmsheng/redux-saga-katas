@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import createSagaMiddleware from 'redux-saga';
 import {createStore, applyMiddleware} from 'redux'
 
-import Counter from './Counter'
+import LoginForm from './LoginForm'
 import reducer from './reducers'
 import rootSaga from './sagas';
 
@@ -21,11 +21,7 @@ const action = type => store.dispatch({type});
 
 function render() {
   ReactDOM.render(
-    <Counter
-      value={store.getState()}
-      onIncrement={() => action('INCREMENT')}
-      onDecrement={() => action('DECREMENT')}
-      onIncrementAsync={() => action('INCREMENT_ASYNC')} />,
+    <LoginForm onSubmit={(data) => console.log('data', data)} />,
     document.getElementById('root')
   )
 }
